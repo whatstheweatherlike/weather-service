@@ -1,0 +1,2 @@
+weatherService:
+  hostAndPort: https://api.openweathermap.org

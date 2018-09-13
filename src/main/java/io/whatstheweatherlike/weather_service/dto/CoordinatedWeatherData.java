@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-@JsonIgnoreProperties({"base", "visibility", "sys", "cod"})
+@JsonIgnoreProperties({"base", "visibility", "sys"})
 public class CoordinatedWeatherData {
 
     @JsonProperty(value = "coord")
@@ -38,6 +38,9 @@ public class CoordinatedWeatherData {
     @JsonProperty(value="dt")
     private int unixDateTime;
 
+    @JsonProperty(value="cod")
+    private int httpStatusCode;
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
@@ -64,6 +67,10 @@ public class CoordinatedWeatherData {
 
     public Snow getSnow() {
         return snow;
+    }
+
+    public int getHttpStatusCode() {
+        return httpStatusCode;
     }
 
     public static final class Coordinates {
