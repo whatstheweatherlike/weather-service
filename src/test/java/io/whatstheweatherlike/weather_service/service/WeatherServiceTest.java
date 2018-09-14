@@ -1,7 +1,6 @@
 package io.whatstheweatherlike.weather_service.service;
 
 import io.whatstheweatherlike.weather_service.dto.CoordinatedWeatherData;
-import org.bouncycastle.util.io.Streams;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.IOException;
 
@@ -34,7 +34,7 @@ public class WeatherServiceTest {
 
     @Before
     public void readDefaultResponse() throws IOException {
-        defaultResponse = Streams.readAll(WeatherService.class.getResourceAsStream("/lat_lon_weather_data.json"));
+        defaultResponse = FileCopyUtils.copyToByteArray(WeatherService.class.getResourceAsStream("/lat_lon_weather_data.json"));
     }
 
     @Test
