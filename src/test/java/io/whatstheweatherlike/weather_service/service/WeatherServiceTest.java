@@ -6,10 +6,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.web.client.MockServerRestTemplateCustomizer;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
@@ -22,6 +29,7 @@ import static org.springframework.test.web.client.response.MockRestResponseCreat
 
 @RunWith(SpringRunner.class)
 @RestClientTest(WeatherService.class)
+@ActiveProfiles("test")
 public class WeatherServiceTest {
 
     @Autowired
@@ -49,7 +57,6 @@ public class WeatherServiceTest {
         assertNotNull(doRequest());
     }
 
-
     private CoordinatedWeatherData doRequest() {
         server.expect(requestTo(startsWith("/data/2.5/weather")))
                 .andExpect(queryParam("lat", is("0.1")))
@@ -59,6 +66,23 @@ public class WeatherServiceTest {
                 .andRespond(withSuccess(defaultResponse, MediaType.APPLICATION_JSON_UTF8));
 
         return weatherService.request(0.1, 1.2);
+    }
+
+    @TestConfiguration
+    public static class TestConfig {
+
+        @Bean
+        public RestTemplateBuilder restTemplateBuilder() {
+            return new RestTemplateBuilder();
+        }
+
+        @Bean
+        public RestTemplate restTemplate(MockServerRestTemplateCustomizer mockServerRestTemplateCustomizer, RestTemplateBuilder restTemplateBuilder) {
+            RestTemplate build = restTemplateBuilder.build();
+            mockServerRestTemplateCustomizer.customize(build);
+            return build;
+        }
+
     }
 
 }
