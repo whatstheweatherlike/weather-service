@@ -15,6 +15,7 @@ public class DefaultController {
         this.weatherService = weatherService;
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path="/weather-at/{latitude},{longitude}")
     @ResponseBody
     public CoordinatedWeatherData weather(@PathVariable(name = "latitude") double latitude, @PathVariable(name="longitude") double longitude) {

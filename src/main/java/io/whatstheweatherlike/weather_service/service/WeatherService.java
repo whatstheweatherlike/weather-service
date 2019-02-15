@@ -31,6 +31,7 @@ public class WeatherService {
         return restTemplate.getForObject(UriComponentsBuilder.fromPath("/data/2.5/weather")
                 .queryParam("lat", latitude)
                 .queryParam("lon", longitude)
+                .queryParam("units", "metric")
                 .queryParam("APPID", appId).toUriString(), CoordinatedWeatherData.class);
     }
 
