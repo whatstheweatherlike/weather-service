@@ -20,7 +20,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.palantir.docker'
 
 bootJar {
-    baseName = 'weather_service'
+    baseName = 'weather-service'
     version =  '0.1.0'
 }
 

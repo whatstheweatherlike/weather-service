@@ -28,10 +28,10 @@ if [ -z $APPID ]; then
     exit 1
 fi
 
-trap stop_container SIGINT SIGTERM
+trap stop_container SIGINT SIGTERM EXIT
 
 echo "Starting docker container..."
-(docker run -e APPID=$APPID -p 8080:8080 whatstheweatherlike/weather_service > $log_file 2>&1)&
+(docker run -e APPID=$APPID -p 8080:8080 whatstheweatherlike/weather-service > $log_file 2>&1)&
 
 echo "Waiting 10 seconds..."
 sleep 10
@@ -52,8 +52,6 @@ while [ $retries -gt 0 ]; do
     ((retries--))
     sleep 10
 done
-
-stop_container
 
 if [ $retries -eq 0 ]; then
     cat $log_file
