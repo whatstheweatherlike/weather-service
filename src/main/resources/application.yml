@@ -1,2 +1,7 @@
 weatherService:
   hostAndPort: https://api.openweathermap.org
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

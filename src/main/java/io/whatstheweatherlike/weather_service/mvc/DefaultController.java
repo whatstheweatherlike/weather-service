@@ -1,11 +1,13 @@
 package io.whatstheweatherlike.weather_service.mvc;
 
+import io.micrometer.core.annotation.Timed;
 import io.whatstheweatherlike.weather_service.dto.CoordinatedWeatherData;
 import io.whatstheweatherlike.weather_service.service.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Timed
 public class DefaultController {
 
     private final WeatherService weatherService;
