@@ -38,6 +38,10 @@ dependencies {
     compile 'io.micrometer:micrometer-registry-prometheus'
 }
 
+bootRun {
+    systemProperties = System.properties //pass through system properties
+}
+
 task unpack(type: Copy) {
     dependsOn bootJar
     from(zipTree(tasks.bootJar.outputs.files.singleFile))
