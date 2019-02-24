@@ -14,7 +14,6 @@ import org.springframework.web.context.request.async.DeferredResult;
 
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ForkJoinPool;
 
 @RestController
 @Timed(histogram = true, percentiles = {0.5, 0.85, 0.95, 0.99})
