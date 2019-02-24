@@ -1,2 +1,11 @@
 weatherService:
   hostAndPort: https://api.openweathermap.org
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  mvc:
+    async:
+      request-timeout: 500

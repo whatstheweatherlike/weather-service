@@ -1,5 +1,7 @@
 package io.whatstheweatherlike.weather_service.service;
 
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import io.whatstheweatherlike.weather_service.dto.CoordinatedWeatherData;
 import org.junit.Before;
 import org.junit.Test;
@@ -81,6 +83,11 @@ public class WeatherServiceTest {
             RestTemplate build = restTemplateBuilder.build();
             mockServerRestTemplateCustomizer.customize(build);
             return build;
+        }
+
+        @Bean
+        public MeterRegistry registry() {
+            return new SimpleMeterRegistry();
         }
 
     }

@@ -41,6 +41,13 @@ public class CoordinatedWeatherData {
     @JsonProperty(value="cod")
     private int httpStatusCode;
 
+    public CoordinatedWeatherData() {
+    }
+
+    public CoordinatedWeatherData(int httpStatusCode) {
+        this.httpStatusCode = httpStatusCode;
+    }
+
     public Coordinates getCoordinates() {
         return coordinates;
     }
