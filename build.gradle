@@ -28,6 +28,8 @@ repositories {
     mavenCentral()
 }
 
+// can't upgrade to 11 because on mockito requiring internal methods
+// see https://dzone.com/articles/jdk-11-and-proxies-in-a-world-past-sunmiscunsafe
 sourceCompatibility = 10
 targetCompatibility = 10
 
@@ -36,6 +38,7 @@ dependencies {
     testCompile 'org.springframework.boot:spring-boot-starter-test'
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'io.micrometer:micrometer-registry-prometheus'
+    testCompile 'org.awaitility:awaitility:3.1.6'
 }
 
 bootRun {

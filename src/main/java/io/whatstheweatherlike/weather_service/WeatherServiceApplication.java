@@ -11,6 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +20,10 @@ import java.net.UnknownHostException;
 import java.util.Arrays;
 
 @SpringBootApplication
+@EnableAsync
 public class WeatherServiceApplication {
+
+    public static final double[] DEFAULT_PERCENTILES = {0.5, 0.85, 0.95, 0.99};
 
     @Value("${weatherService.hostAndPort}")
     private String serviceHostAndPort;

@@ -2,6 +2,7 @@ package io.whatstheweatherlike.weather_service.service;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import io.micrometer.core.instrument.Timer;
+import io.whatstheweatherlike.weather_service.WeatherServiceApplication;
 import io.whatstheweatherlike.weather_service.dto.CoordinatedWeatherData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,9 +31,9 @@ public class WeatherService {
     public WeatherService(RestTemplate restTemplate, MeterRegistry registry) {
         this.restTemplate = restTemplate;
         backendServicePercentiles = Timer.builder("backendservice.weather")
-                .publishPercentiles(0.5, 0.85, 0.95, 0.99)
+                .publishPercentiles(WeatherServiceApplication.DEFAULT_PERCENTILES)
                 .publishPercentileHistogram()
-                .sla(Duration.ofMillis(100))
+                .sla(Duration.ofMillis(500))
                 .minimumExpectedValue(Duration.ofMillis(1))
                 .maximumExpectedValue(Duration.ofSeconds(10))
                 .register(registry);
