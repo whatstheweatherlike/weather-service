@@ -1,7 +1,7 @@
 whatstheweatherlike weather_service
 ===
 
-[![Build Status](https://travis-ci.com/whatstheweatherlike/weather-service.svg?branch=master)](https://travis-ci.com/whatstheweatherlike/weather-service)
+[![Build Status](https://travis-ci.com/whatstheweatherlike/weather-service.svg?branch=master)](https://travis-ci.com/whatstheweatherlike/weather-service)[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=whatstheweatherlike_weather-service&metric=alert_status)](https://sonarcloud.io/dashboard?id=whatstheweatherlike_weather-service)
 
 Backend REST service responsible for retrieving weather data for the provided location.
 
