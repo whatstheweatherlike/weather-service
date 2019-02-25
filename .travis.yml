@@ -18,4 +18,4 @@ addons:
       secure: "cb84d7acf8cc6fc11ab34b28d9fa7f611033561a"
       
 script:
-  - ./gradlew sonarqube
+  - ./gradlew build sonarqube

@@ -60,3 +60,5 @@ docker {
     copySpec.from(tasks.unpack.outputs).into("dependency")
     buildArgs(['DEPENDENCY': "dependency"])
 }
+
+test.finalizedBy jacocoTestReport
