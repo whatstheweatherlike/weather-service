@@ -1,6 +1,8 @@
 whatstheweatherlike weather_service
 ===
 
+[![Build Status](https://travis-ci.com/whatstheweatherlike/weather-service.svg?branch=master)](https://travis-ci.com/whatstheweatherlike/weather-service)
+
 Backend REST service responsible for retrieving weather data for the provided location.
 
 Requirements:
