@@ -1,9 +1,21 @@
 language: java
+
 jdk: openjdk10
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+  
 cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+    
+addons:
+  sonarcloud:
+    organization: "whatstheweatherlike"
+    token:
+      secure: "cb84d7acf8cc6fc11ab34b28d9fa7f611033561a"
+      
+script:
+  - ./gradlew clean build sonarqube
